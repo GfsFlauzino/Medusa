@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>BlueTeam on MedusaSec</title>
+    <link>http://localhost:1313/blue-team/</link>
+    <description>Recent content in BlueTeam on MedusaSec</description>
+    <generator>Hugo -- 0.147.8</generator>
+    <language>pt-br</language>
+    <lastBuildDate>Wed, 07 May 2025 09:09:07 -0300</lastBuildDate>
+    <atom:link href="http://localhost:1313/blue-team/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Processamento e análise utilizando o FTK</title>
+      <link>http://localhost:1313/blue-team/ftk/</link>
+      <pubDate>Wed, 07 May 2025 09:09:07 -0300</pubDate>
+      <guid>http://localhost:1313/blue-team/ftk/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
