@@ -6,22 +6,14 @@
     <description>Recent content in MedusaSec - CyberSecurity in a Simple Way on MedusaSec</description>
     <generator>Hugo -- 0.147.8</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 07 May 2025 09:09:07 -0300</lastBuildDate>
+    <lastBuildDate>Mon, 01 Jan 0001 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://medusasec.com.br/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Processamento e análise utilizando o FTK</title>
-      <link>https://medusasec.com.br/blue-team/ftk/</link>
-      <pubDate>Wed, 07 May 2025 09:09:07 -0300</pubDate>
-      <guid>https://medusasec.com.br/blue-team/ftk/</guid>
-      <description></description>
-    </item>
     <item>
       <title>About Us</title>
       <link>https://medusasec.com.br/about-us/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://medusasec.com.br/about-us/</guid>
-      <description>&lt;p&gt;Somos um grupo de pessoas dedicadas a compartilhar conhecimento.&lt;/p&gt;
-&lt;p&gt;Conheça abaixo nossos membros:&lt;/p&gt;
+      <description>&lt;p&gt;Conheça abaixo nossos membros e autores:&lt;/p&gt;
 &lt;style&gt;
 .card-grid {
   display: grid;
@@ -76,7 +68,7 @@
   display: inline-block;
   margin-top: 10px;
   text-decoration: none;
-  background-color: #00ff99;
+  background-color: #ffffffff;
   color: #000;
   padding: 6px 12px;
   border-radius: 6px;
@@ -92,7 +84,15 @@
   &lt;div class=&#34;card&#34;&gt;
     &lt;img src=&#34;https://medusasec.com.br/images/gabriel.jpeg&#34; alt=&#34;Gabriel Flauzino&#34;&gt;
     &lt;h3&gt;Gabriel Flauzino&lt;/h3&gt;
-    &lt;p&gt;Formado em Defesa Cibernética pela FIAP, Analista de Segurança da Informação com foco em Blue Team.&lt;/p&gt;</description>
+    &lt;p&gt;Analista de segurança da informação focado em BlueTeam.&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>Da assinatura ao comportamento: Uma análise dos tipos de detecção</title>
+      <link>https://medusasec.com.br/blue-team/detections/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://medusasec.com.br/blue-team/detections/</guid>
+      <description>&lt;p&gt;Na segurança da informação, é importante entender como funcionam os diferentes tipos de detecção e em que eles se diferenciam. Assim, o Red Team sabe o que precisa driblar durante um teste, e o Blue Team consegue melhorar a forma de identificar e responder a possíveis invasões.&lt;/p&gt;
+&lt;p&gt;Importante destacar que a detecção por si só não torna o ambiente seguro, mas ela é o primeiro passo para identificar e mitigar um possível incidente. Dessa forma, regras, assinaturas e ferramentas precisam de ajustes, refinamento e tuning.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

@@ -6,14 +6,14 @@
     <description>Recent content in BlueTeam on MedusaSec</description>
     <generator>Hugo -- 0.147.8</generator>
     <language>pt-br</language>
-    <lastBuildDate>Wed, 07 May 2025 09:09:07 -0300</lastBuildDate>
     <atom:link href="https://medusasec.com.br/blue-team/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Processamento e análise utilizando o FTK</title>
-      <link>https://medusasec.com.br/blue-team/ftk/</link>
-      <pubDate>Wed, 07 May 2025 09:09:07 -0300</pubDate>
-      <guid>https://medusasec.com.br/blue-team/ftk/</guid>
-      <description></description>
+      <title>Da assinatura ao comportamento: Uma análise dos tipos de detecção</title>
+      <link>https://medusasec.com.br/blue-team/detections/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://medusasec.com.br/blue-team/detections/</guid>
+      <description>&lt;p&gt;Na segurança da informação, é importante entender como funcionam os diferentes tipos de detecção e em que eles se diferenciam. Assim, o Red Team sabe o que precisa driblar durante um teste, e o Blue Team consegue melhorar a forma de identificar e responder a possíveis invasões.&lt;/p&gt;
+&lt;p&gt;Importante destacar que a detecção por si só não torna o ambiente seguro, mas ela é o primeiro passo para identificar e mitigar um possível incidente. Dessa forma, regras, assinaturas e ferramentas precisam de ajustes, refinamento e tuning.&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>
