@@ -1,160 +1,129 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
+<html lang="pt-br" dir="auto">
 <head>
-	<meta name="generator" content="Hugo 0.147.8"><meta charset="utf-8">
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="robots" content="index, follow">
-<title>MedusaSec</title>
-
+<title>MedusaSec — CyberSecurity in a Simple Way</title>
 <meta name="description" content="Bem-vindo ao MedusaSec, um espaço sobre Segurança e Desenvolvimento.">
-<meta name="author" content="">
 <link rel="canonical" href="https://medusasec.com.br/">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://medusasec.com.br/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://medusasec.com.br/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://medusasec.com.br/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://medusasec.com.br/apple-touch-icon.png">
-<link rel="mask-icon" href="https://medusasec.com.br/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" type="application/rss+xml" href="https://medusasec.com.br/index.xml">
-<link rel="alternate" hreflang="en" href="https://medusasec.com.br/">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript><meta property="og:url" content="https://medusasec.com.br/">
-  <meta property="og:site_name" content="MedusaSec">
-  <meta property="og:title" content="MedusaSec - CyberSecurity in a Simple Way">
-  <meta property="og:description" content="Bem-vindo ao MedusaSec, um espaço sobre Segurança e Desenvolvimento.">
-  <meta property="og:locale" content="pt-br">
-  <meta property="og:type" content="website">
-      <meta property="og:image" content="https://medusasec.com.br/static/images/medusa.png">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="icon" href="/favicon.ico">
+<meta name="theme-color" content="#1d1e20">
+<meta property="og:url" content="https://medusasec.com.br/">
+<meta property="og:site_name" content="MedusaSec">
+<meta property="og:title" content="MedusaSec - CyberSecurity in a Simple Way">
+<meta property="og:description" content="Bem-vindo ao MedusaSec, um espaço sobre Segurança e Desenvolvimento.">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://medusasec.com.br/images/Medusa.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://medusasec.com.br/static/images/medusa.png">
-<meta name="twitter:title" content="MedusaSec - CyberSecurity in a Simple Way">
-<meta name="twitter:description" content="Bem-vindo ao MedusaSec, um espaço sobre Segurança e Desenvolvimento.">
-
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "MedusaSec",
-  "url": "https://medusasec.com.br/",
-  "description": "",
-  "logo": "https://medusasec.com.br/favicon.ico",
-  "sameAs": [
-      
-  ]
-}
-</script>
 </head>
+<body id="top">
 
-<body class="list dark" id="top">
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://medusasec.com.br/" accesskey="h" title="MedusaSec (Alt + H)">
-                <img src="https://medusasec.com.br/images/logo.png" alt="" aria-label="logo"
-                    height="30">MedusaSec</a>
-            <div class="logo-switches">
-            </div>
+<header class="site-header">
+  <nav class="nav">
+    <a href="/" class="logo"><img src="/images/logo.png" alt="MedusaSec logo">MedusaSec</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/red-team/" data-section="red-team">Red Team</a></li>
+      <li><a href="/blue-team/" data-section="blue-team">Blue Team</a></li>
+      <li><a href="/coding/" data-section="coding">Coding</a></li>
+      <li><a href="/about-us/">About Us</a></li>
+      <li>
+        <div class="search-box mobile">
+          <input type="text" placeholder="Buscar posts...">
+          <div class="search-results"></div>
         </div>
-        <ul id="menu">
-            <li>
-                <a href="https://medusasec.com.br/red-team/" title="Red Team">
-                    <span>Red Team</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://medusasec.com.br/blue-team/" title="Blue Team">
-                    <span>Blue Team</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://medusasec.com.br/coding/" title="Coding">
-                    <span>Coding</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://medusasec.com.br/about-us/" title="About Us">
-                    <span>About Us</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Buscar...">
+        <div class="search-results"></div>
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
 </header>
-<main class="main"> 
-<div class="post-content"><p><img alt="Banner" loading="lazy" src="/images/Medusa.png"></p>
 
+<main>
+  <div class="container">
+    <section class="hero">
+      <span class="hero-badge">status: online</span>
+      <img class="hero-art" src="/images/Medusa.png" alt="MedusaSec">
+      <h1>CyberSecurity in a Simple Way</h1>
+      <p class="lead">Um espaço sobre Segurança e Desenvolvimento — ataque, defesa e código, explicados sem enrolação.</p>
+    </section>
 
-</div>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2025 <a href="https://medusasec.com.br/">MedusaSec</a></span> · 
+    <section class="category-grid">
+      <a class="category-card red" href="/red-team/">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="12" y1="2" x2="12" y2="6"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="2" y1="12" x2="6" y2="12"/><line x1="18" y1="12" x2="22" y2="12"/></svg>
+        </div>
+        <h3>Red Team</h3>
+        <p>Ofensiva, pentest e simulação de ataques reais.</p>
+        <span class="go">Explorar →</span>
+      </a>
+      <a class="category-card blue" href="/blue-team/">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2 4 5v6c0 5.25 3.44 9.74 8 11 4.56-1.26 8-5.75 8-11V5l-8-3Z"/></svg>
+        </div>
+        <h3>Blue Team</h3>
+        <p>Detecção, resposta a incidentes e hardening.</p>
+        <span class="go">Explorar →</span>
+      </a>
+      <a class="category-card green" href="/coding/">
+        <div class="icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>Coding</h3>
+        <p>Automação, ferramentas e desenvolvimento aplicado à segurança.</p>
+        <span class="go">Explorar →</span>
+      </a>
+    </section>
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
+    <section class="section">
+      <h2 class="section-title">Últimos posts</h2>
+      <p class="section-subtitle">O que saiu recentemente por aqui.</p>
+      <div class="post-grid">
+        <a class="post-card" style="--card-accent: var(--accent-blue)" href="/blue-team/detections/">
+          <div class="badges">
+            <span class="badge blue">Blue Team</span>
+            <span class="badge level">Intermediário</span>
+          </div>
+          <h3>Da assinatura ao comportamento: Uma análise dos tipos de detecção</h3>
+          <p>Signature-based, behavior-based, anomaly-based, heuristic-based e trend-based detection — o que muda entre elas e quando cada uma falha.</p>
+          <div class="meta">Gabriel Flauzino · 5 min de leitura</div>
+        </a>
+        <a class="post-card" style="--card-accent: var(--accent-blue)" href="/blue-team/ftk/">
+          <div class="badges">
+            <span class="badge blue">Blue Team</span>
+            <span class="badge level">Iniciante</span>
+          </div>
+          <h3>Detecções e suas diferenças</h3>
+          <p>Um panorama inicial sobre detecção por assinatura e por comportamento, e por que isso importa para Red e Blue Team.</p>
+          <div class="meta">7 de maio de 2025 · 2 min de leitura</div>
+        </a>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; width:100%;">
+    <span>&copy; 2026 <a href="/">MedusaSec</a></span>
+    <span>Segurança e Desenvolvimento, sem enrolação.</span>
+  </div>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
+<a href="#top" aria-label="Voltar ao topo" class="top-link" id="top-link">↑</a>
 
+<script src="/assets/js/search-index.js"></script>
+<script src="/assets/js/main.js"></script>
 <script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
+  document.querySelectorAll('.nav-links a[data-section]').forEach(a => {
+    if (location.pathname.startsWith('/' + a.dataset.section)) a.classList.add('active');
+  });
 </script>
 </body>
-
 </html>

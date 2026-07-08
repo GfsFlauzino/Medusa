@@ -3,21 +3,23 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://medusasec.com.br/</loc>
-    <lastmod>2025-05-07T09:08:58-03:00</lastmod>
-  </url><url>
+  </url>
+  <url>
     <loc>https://medusasec.com.br/red-team/</loc>
-    <lastmod>2025-05-07T09:08:58-03:00</lastmod>
-  </url><url>
-    <loc>https://medusasec.com.br/about-us/</loc>
-  </url><url>
+  </url>
+  <url>
     <loc>https://medusasec.com.br/blue-team/</loc>
-  </url><url>
-    <loc>https://medusasec.com.br/categories/</loc>
-  </url><url>
-    <loc>https://medusasec.com.br/coding/</loc>
-  </url><url>
+  </url>
+  <url>
     <loc>https://medusasec.com.br/blue-team/detections/</loc>
-  </url><url>
-    <loc>https://medusasec.com.br/tags/</loc>
+  </url>
+  <url>
+    <loc>https://medusasec.com.br/blue-team/ftk/</loc>
+  </url>
+  <url>
+    <loc>https://medusasec.com.br/coding/</loc>
+  </url>
+  <url>
+    <loc>https://medusasec.com.br/about-us/</loc>
   </url>
 </urlset>
