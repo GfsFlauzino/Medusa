@@ -228,6 +228,8 @@
         { name: 'Event ID 4624', path: 'Security.evtx', desc: 'Login bem-sucedido — inclui IP de origem, tipo de logon e conta', prio: 'high' },
         { name: 'Event ID 4625', path: 'Security.evtx', desc: 'Login falho — detects brute-force e password spraying', prio: 'high' },
         { name: 'Event ID 4634', path: 'Security.evtx', desc: 'Logoff — permite calcular duração da sessão', prio: 'med' },
+        { name: 'Event ID 4800', path: 'Security.evtx', desc: 'Estação de trabalho bloqueada (workstation locked) — marca ausência do usuário na sessão', prio: 'med' },
+        { name: 'Event ID 4801', path: 'Security.evtx', desc: 'Estação de trabalho desbloqueada (workstation unlocked) — útil para validar presença física x acesso remoto', prio: 'med' },
         { name: 'Event ID 4648', path: 'Security.evtx', desc: 'Logon com credenciais explícitas (RunAs, pass-the-hash)', prio: 'high' },
         { name: 'Event ID 4768/4769', path: 'Security.evtx', desc: 'Kerberos TGT/TGS request — detecta Kerberoasting, Pass-the-Ticket', prio: 'high' },
         { name: 'Event ID 4776', path: 'Security.evtx', desc: 'Autenticação NTLM — Pass-the-Hash e autenticações locais', prio: 'high' },
