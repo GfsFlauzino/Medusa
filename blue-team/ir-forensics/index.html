@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="pt-br" dir="auto">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>IR Forensics Reference — Artefatos Windows &amp; Linux | MedusaSec</title>
+<meta name="description" content="Referência rápida para Incident Response — artefatos forenses do Windows e Linux por categoria, caminho e prioridade investigativa.">
+<link rel="canonical" href="https://medusasec.com.br/blue-team/ir-forensics/">
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="icon" href="/favicon.ico">
+<meta name="theme-color" content="#1d1e20">
+<meta property="og:url" content="https://medusasec.com.br/blue-team/ir-forensics/">
+<meta property="og:site_name" content="MedusaSec">
+<meta property="og:title" content="IR Forensics Reference — Artefatos Windows & Linux">
+<meta property="og:type" content="article">
+<style>
+  .ir-page {
+    --ir-amber: #F5C842;
+    --ir-text-dim: color-mix(in srgb, var(--text-secondary) 55%, var(--bg) 45%);
+    --ir-os-win: var(--accent-blue);
+    --ir-os-win-dim: color-mix(in srgb, var(--accent-blue) 18%, transparent);
+    --ir-os-lin: var(--ir-amber);
+    --ir-os-lin-dim: color-mix(in srgb, var(--ir-amber) 18%, transparent);
+    padding-top: 32px;
+  }
+
+  .ir-intro { text-align: center; margin-bottom: 28px; }
+  .ir-intro .hero-badge { display: inline-flex; }
+
+  .ir-tabs { display: flex; justify-content: center; gap: 8px; margin-bottom: 24px; flex-wrap: wrap; }
+  .ir-tab {
+    display: flex; align-items: center; gap: 8px;
+    padding: 8px 20px; border-radius: 8px;
+    border: 1.5px solid var(--border); background: var(--surface);
+    cursor: pointer; font-family: var(--font-mono); font-size: 13px; font-weight: 500;
+    color: var(--text-secondary); transition: all .18s; user-select: none;
+  }
+  .ir-tab:hover { border-color: var(--ir-text-dim); color: var(--text-primary); }
+  .ir-tab.active[data-os="win"] { border-color: var(--ir-os-win); color: var(--ir-os-win); background: var(--ir-os-win-dim); }
+  .ir-tab.active[data-os="lin"] { border-color: var(--ir-os-lin); color: var(--ir-os-lin); background: var(--ir-os-lin-dim); }
+  .ir-tab.active[data-os="both"] { border-color: var(--ir-amber); color: var(--ir-amber); background: color-mix(in srgb, var(--ir-amber) 10%, transparent); }
+  .ir-tab-icon { font-size: 16px; }
+
+  .ir-search-wrap { max-width: 420px; margin: 0 auto 24px; position: relative; }
+  .ir-search-wrap input {
+    width: 100%; background: var(--surface); border: 1.5px solid var(--border);
+    border-radius: 8px; padding: 9px 14px 9px 38px; color: var(--text-primary);
+    font-family: var(--font-mono); font-size: 13px; outline: none; transition: border-color .15s;
+  }
+  .ir-search-wrap input:focus { border-color: var(--accent-blue); }
+  .ir-search-wrap input::placeholder { color: var(--ir-text-dim); }
+  .ir-search-icon { position: absolute; left: 12px; top: 50%; transform: translateY(-50%); color: var(--text-secondary); font-size: 14px; pointer-events: none; }
+
+  .ir-cat-filters { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-bottom: 24px; }
+  .ir-cat-btn {
+    padding: 4px 12px; border-radius: 20px; border: 1px solid var(--border);
+    background: transparent; color: var(--text-secondary); font-size: 11px;
+    font-family: var(--font-mono); cursor: pointer; transition: all .15s; letter-spacing: .03em;
+  }
+  .ir-cat-btn:hover { border-color: var(--ir-text-dim); color: var(--text-primary); }
+  .ir-cat-btn.active { border-color: var(--ir-amber); color: var(--ir-amber); background: color-mix(in srgb, var(--ir-amber) 10%, transparent); }
+
+  .ir-legend { display: flex; justify-content: center; gap: 16px; margin-bottom: 24px; flex-wrap: wrap; }
+  .ir-legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--text-secondary); }
+  .ir-legend-dot { width: 8px; height: 8px; border-radius: 2px; }
+
+  .ir-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 16px; margin-bottom: 24px;
+  }
+
+  .ir-card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    overflow: hidden; transition: border-color .18s, transform .18s;
+  }
+  .ir-card:hover { border-color: var(--ir-text-dim); transform: translateY(-2px); }
+  .ir-card.ir-win-card { border-top: 2.5px solid var(--ir-os-win); }
+  .ir-card.ir-lin-card { border-top: 2.5px solid var(--ir-os-lin); }
+
+  .ir-card-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px 10px; border-bottom: 1px solid var(--border); }
+  .ir-card-title { display: flex; align-items: center; gap: 8px; font-size: 12px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-secondary); }
+  .ir-card-title .ir-dot { width: 7px; height: 7px; border-radius: 50%; }
+  .ir-win-card .ir-dot { background: var(--ir-os-win); }
+  .ir-lin-card .ir-dot { background: var(--ir-os-lin); }
+
+  .ir-os-badge { font-family: var(--font-mono); font-size: 10px; padding: 2px 8px; border-radius: 4px; font-weight: 600; letter-spacing: .05em; }
+  .ir-os-badge.win { background: var(--ir-os-win-dim); color: var(--ir-os-win); }
+  .ir-os-badge.lin { background: var(--ir-os-lin-dim); color: var(--ir-os-lin); }
+
+  .ir-artifact-list { padding: 12px 0; }
+  .ir-artifact-item { display: grid; grid-template-columns: 1fr auto; gap: 8px; align-items: start; padding: 8px 16px; border-bottom: 1px solid var(--border); transition: background .12s; }
+  .ir-artifact-item:last-child { border-bottom: none; }
+  .ir-artifact-item:hover { background: var(--surface-alt); }
+
+  .ir-artifact-name { font-family: var(--font-mono); font-size: 12px; font-weight: 500; color: var(--text-primary); margin-bottom: 3px; }
+  .ir-artifact-name mark { background: color-mix(in srgb, var(--ir-amber) 30%, transparent); color: var(--ir-amber); border-radius: 2px; padding: 0 1px; }
+
+  .ir-artifact-path { font-family: var(--font-mono); font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; word-break: break-all; }
+  .ir-artifact-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+  .ir-prio { font-family: var(--font-mono); font-size: 9px; font-weight: 700; letter-spacing: .05em; padding: 2px 7px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; }
+  .ir-prio.high { background: color-mix(in srgb, var(--accent-red) 16%, transparent); color: var(--accent-red); }
+  .ir-prio.med { background: color-mix(in srgb, var(--ir-amber) 16%, transparent); color: var(--ir-amber); }
+  .ir-prio.low { background: color-mix(in srgb, var(--accent-green) 16%, transparent); color: var(--accent-green); }
+
+  .ir-tip { display: flex; gap: 8px; background: color-mix(in srgb, var(--ir-os-win) 8%, transparent); border-left: 2px solid var(--ir-os-win); padding: 8px 12px; margin: 0 12px 12px; border-radius: 0 6px 6px 0; font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+  .ir-lin-card .ir-tip { background: color-mix(in srgb, var(--ir-os-lin) 8%, transparent); border-left-color: var(--ir-os-lin); }
+  .ir-tip-icon { flex-shrink: 0; margin-top: 1px; }
+
+  .ir-empty { grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--ir-text-dim); font-family: var(--font-mono); font-size: 13px; }
+
+  .ir-note { text-align: center; margin: 8px 0 32px; font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); }
+
+  .ir-hidden { display: none !important; }
+</style>
+</head>
+<body id="top">
+
+<header class="site-header">
+  <nav class="nav">
+    <a href="/" class="logo"><img src="/images/logo.png" alt="MedusaSec logo">MedusaSec</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/red-team/" data-section="red-team">Red Team</a></li>
+      <li><a href="/blue-team/" data-section="blue-team">Blue Team</a></li>
+      <li><a href="/coding/" data-section="coding">Coding</a></li>
+      <li><a href="/about-us/">About Us</a></li>
+      <li>
+        <div class="search-box mobile">
+          <input type="text" placeholder="Buscar posts...">
+          <div class="search-results"></div>
+        </div>
+      </li>
+    </ul>
+    <div class="nav-actions">
+      <div class="search-box">
+        <input type="text" placeholder="Buscar...">
+        <div class="search-results"></div>
+      </div>
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
+</header>
+
+<main>
+  <div class="page-banner blue">
+    <div class="container">
+      <div class="kicker">Blue Team · Referência</div>
+      <h1>IR Forensics — Artefatos Windows &amp; Linux</h1>
+      <p>Referência rápida para Incident Response — artefatos por categoria, caminho e prioridade investigativa.</p>
+    </div>
+  </div>
+
+  <div class="container">
+    <section class="ir-page">
+      <div class="ir-intro">
+        <span class="hero-badge">IR FORENSICS QUICK REFERENCE v1.0</span>
+      </div>
+
+      <div class="ir-tabs" id="irTabs">
+        <div class="ir-tab active" data-os="both"><span class="ir-tab-icon">⚡</span> Ambos</div>
+        <div class="ir-tab" data-os="win"><span class="ir-tab-icon">🪟</span> Windows</div>
+        <div class="ir-tab" data-os="lin"><span class="ir-tab-icon">🐧</span> Linux</div>
+      </div>
+
+      <div class="ir-search-wrap">
+        <span class="ir-search-icon">🔍</span>
+        <input type="text" id="irSearch" placeholder="Buscar artefato, caminho ou descrição..." autocomplete="off">
+      </div>
+
+      <div class="ir-cat-filters" id="irCatFilters">
+        <button class="ir-cat-btn active" data-cat="all">Todos</button>
+        <button class="ir-cat-btn" data-cat="auth">Autenticação</button>
+        <button class="ir-cat-btn" data-cat="exec">Execução</button>
+        <button class="ir-cat-btn" data-cat="persist">Persistência</button>
+        <button class="ir-cat-btn" data-cat="network">Rede</button>
+        <button class="ir-cat-btn" data-cat="priv">Usuários &amp; Privilégios</button>
+        <button class="ir-cat-btn" data-cat="disk">Disco &amp; NTFS</button>
+        <button class="ir-cat-btn" data-cat="process">Processos</button>
+        <button class="ir-cat-btn" data-cat="logs">Logs do Sistema</button>
+      </div>
+
+      <div class="ir-legend">
+        <div class="ir-legend-item"><div class="ir-legend-dot" style="background:var(--accent-red)"></div> Alta Prioridade</div>
+        <div class="ir-legend-item"><div class="ir-legend-dot" style="background:var(--ir-amber)"></div> Média Prioridade</div>
+        <div class="ir-legend-item"><div class="ir-legend-dot" style="background:var(--accent-green)"></div> Baixa Prioridade</div>
+      </div>
+
+      <div class="ir-grid" id="irGrid"></div>
+
+      <p class="ir-note">Referência construída para times de IR e forense digital · <span style="color:var(--text-primary)">MITRE ATT&amp;CK</span></p>
+
+      <footer class="post-footer">
+        <a class="back-link" href="/blue-team/">← Voltar para Blue Team</a>
+      </footer>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; width:100%;">
+    <span>&copy; 2026 <a href="/">MedusaSec</a></span>
+    <span>Segurança e Desenvolvimento, sem enrolação.</span>
+  </div>
+</footer>
+<a href="#top" aria-label="Voltar ao topo" class="top-link" id="top-link">↑</a>
+
+<script src="/assets/js/search-index.js"></script>
+<script src="/assets/js/main.js"></script>
+<script>
+  document.querySelectorAll('.nav-links a[data-section]').forEach(a => {
+    if (location.pathname.startsWith('/' + a.dataset.section)) a.classList.add('active');
+  });
+</script>
+<script>
+(function () {
+  const data = [
+
+    // ══════════════════════════════════════════
+    //  WINDOWS CARDS
+    // ══════════════════════════════════════════
+    {
+      os: 'win', cat: 'auth',
+      title: 'Autenticação & Logins',
+      tip: 'Combine 4624 + 4625 + 4634 para reconstruir sessões completas. Logon Type 3 = rede, Type 10 = RemoteInteractive (RDP), Type 2 = interativo.',
+      items: [
+        { name: 'Event ID 4624', path: 'Security.evtx', desc: 'Login bem-sucedido — inclui IP de origem, tipo de logon e conta', prio: 'high' },
+        { name: 'Event ID 4625', path: 'Security.evtx', desc: 'Login falho — detects brute-force e password spraying', prio: 'high' },
+        { name: 'Event ID 4634', path: 'Security.evtx', desc: 'Logoff — permite calcular duração da sessão', prio: 'med' },
+        { name: 'Event ID 4800', path: 'Security.evtx', desc: 'Estação de trabalho bloqueada (workstation locked) — marca ausência do usuário na sessão', prio: 'med' },
+        { name: 'Event ID 4801', path: 'Security.evtx', desc: 'Estação de trabalho desbloqueada (workstation unlocked) — útil para validar presença física x acesso remoto', prio: 'med' },
+        { name: 'Event ID 4648', path: 'Security.evtx', desc: 'Logon com credenciais explícitas (RunAs, pass-the-hash)', prio: 'high' },
+        { name: 'Event ID 4768/4769', path: 'Security.evtx', desc: 'Kerberos TGT/TGS request — detecta Kerberoasting, Pass-the-Ticket', prio: 'high' },
+        { name: 'Event ID 4776', path: 'Security.evtx', desc: 'Autenticação NTLM — Pass-the-Hash e autenticações locais', prio: 'high' },
+      ]
+    },
+    {
+      os: 'win', cat: 'exec',
+      title: 'Execução de Processos',
+      tip: 'Sem CommandLine no 4688? Olhe PowerShell Operational (4104 — Script Block), depois AmCache e Prefetch para provar execução mesmo sem logs.',
+      items: [
+        { name: 'Event ID 4688', path: 'Security.evtx', desc: 'Process Creation — requer auditoria de processos habilitada com CommandLine', prio: 'high' },
+        { name: 'Event ID 4104', path: 'Microsoft-Windows-PowerShell/Operational.evtx', desc: 'Script Block Logging — captura comandos PowerShell completos', prio: 'high' },
+        { name: 'Sysmon Event ID 1', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'Process Creation com hashes, PPID, CommandLine completo e usuário', prio: 'high' },
+        { name: 'Prefetch', path: 'C:\\Windows\\Prefetch\\*.pf', desc: 'Histórico de execução: nome, timestamps, contagem, DLLs carregadas', prio: 'high' },
+        { name: 'AmCache.hve', path: 'C:\\Windows\\AppCompat\\Programs\\Amcache.hve', desc: 'SHA-1, path, publisher e primeira execução — sobrevive a log deletion', prio: 'high' },
+        { name: 'ShimCache', path: 'HKLM\\SYSTEM\\ControlSet001\\Control\\Session Manager\\AppCompatCache', desc: 'Histórico de binários executados mesmo sem logs — em memória e disco', prio: 'high' },
+        { name: 'BAM / DAM', path: 'HKLM\\SYSTEM\\CurrentControlSet\\Services\\bam\\State\\UserSettings', desc: 'Background Activity Monitor — timestamp preciso de execução por usuário', prio: 'med' },
+      ]
+    },
+    {
+      os: 'win', cat: 'persist',
+      title: 'Persistência',
+      tip: 'Atacantes avançados criam serviços (7045), modificam GPO e usam WMI subscriptions. Sempre verifique também IFEO (Image File Execution Options) para debugger hijacking.',
+      items: [
+        { name: 'Run / RunOnce Keys', path: 'HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run', desc: 'Executa no boot do sistema — alvo clássico de malware', prio: 'high' },
+        { name: 'Run Keys (User)', path: 'HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Run', desc: 'Executa no login do usuário — persistência sem privilégio de admin', prio: 'high' },
+        { name: 'Event ID 7045', path: 'System.evtx', desc: 'Novo serviço instalado — criação de serviço malicioso', prio: 'high' },
+        { name: 'Services Hive', path: 'HKLM\\SYSTEM\\ControlSet001\\Services', desc: 'Todos os serviços — procure entradas anômalas ou sem assinatura', prio: 'high' },
+        { name: 'Scheduled Tasks', path: 'C:\\Windows\\System32\\Tasks\\ + Event ID 4698', desc: '4698 = task criada; verifique tasks com ações PowerShell ou cmd', prio: 'high' },
+        { name: 'WMI Subscriptions', path: 'wmiprvse.exe + root\\subscription', desc: 'Persistência fileless via WMI EventFilter/Consumer — difícil de detectar', prio: 'high' },
+        { name: 'IFEO Debugger', path: 'HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Image File Execution Options', desc: 'Hijacking de processo legítimo para executar malware como debugger', prio: 'med' },
+        { name: 'Startup Folder', path: 'C:\\Users\\<user>\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup', desc: 'Executa no login — verificar arquivos criados recentemente', prio: 'med' },
+      ]
+    },
+    {
+      os: 'win', cat: 'network',
+      title: 'Rede & Conectividade',
+      tip: 'Sysmon Event ID 3 (Network Connection) é a melhor fonte para correlacionar processo ↔ IP. Combine com DNS Query logs (Event ID 22) para detectar C2 via DNS.',
+      items: [
+        { name: 'Sysmon Event ID 3', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'Network Connection — correlaciona PID, processo, IP destino e porta', prio: 'high' },
+        { name: 'Sysmon Event ID 22', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'DNS Query — detecta beaconing por domínio, DGA e DNS tunneling', prio: 'high' },
+        { name: 'Firewall Logs', path: 'C:\\Windows\\System32\\LogFiles\\Firewall\\pfirewall.log', desc: 'Conexões bloqueadas e permitidas — detecta lateral movement e C2', prio: 'med' },
+        { name: 'RDP MRU (Terminal Client)', path: 'HKCU\\SOFTWARE\\Microsoft\\Terminal Server Client\\Servers', desc: 'Histórico de conexões RDP feitas *desse* host — evidencia movimento lateral', prio: 'high' },
+        { name: 'Network Profiles', path: 'HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\NetworkList', desc: 'Redes às quais a máquina se conectou com timestamps', prio: 'low' },
+      ]
+    },
+    {
+      os: 'win', cat: 'priv',
+      title: 'Usuários & Privilégios',
+      tip: 'Atacante frequentemente cria conta local (4720) e adiciona ao grupo Administrators (4732). Depois desativa (4725) ou deleta (4726) pra dificultar detecção. Valide SAM hive para contas locais persistentes.',
+      items: [
+        { name: 'Event ID 4720', path: 'Security.evtx', desc: 'Conta de usuário criada — procure criações fora do processo de onboarding normal', prio: 'high' },
+        { name: 'Event ID 4732', path: 'Security.evtx', desc: 'Membro adicionado a grupo privilegiado (Administrators, Domain Admins)', prio: 'high' },
+        { name: 'Event ID 4738', path: 'Security.evtx', desc: 'Conta de usuário modificada — mudança de senha, flags', prio: 'med' },
+        { name: 'SAM Hive', path: 'HKLM\\SAM\\SAM\\Domains\\Account\\Users', desc: 'Todas as contas locais, hashes NTLM, contagem de logins e último acesso', prio: 'high' },
+        { name: 'LSA Secrets', path: 'HKLM\\SECURITY\\Policy\\Secrets', desc: 'Credenciais em cache — service accounts, DPAPI, autologon passwords', prio: 'high' },
+        { name: 'Sudoers (Windows)', path: 'HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies', desc: 'UAC e políticas de elevação — atacante pode desabilitar UAC', prio: 'med' },
+      ]
+    },
+    {
+      os: 'win', cat: 'disk',
+      title: 'Disco & NTFS Forensics',
+      tip: '$UsnJrnl é o artefato mais poderoso para provar que um arquivo existiu e quando foi criado/modificado/deletado — mesmo após wipe. Combine com MFT para timeline completa.',
+      items: [
+        { name: 'MFT ($MFT)', path: 'C:\\$MFT', desc: 'Master File Table — metadados de TODOS os arquivos: timestamps, tamanho, localização', prio: 'high' },
+        { name: '$UsnJrnl ($J)', path: 'C:\\$Extend\\$UsnJrnl', desc: 'Cada criação, modificação e deleção de arquivo com timestamp de alta resolução', prio: 'high' },
+        { name: '$LogFile', path: 'C:\\$LogFile', desc: 'Journal de transações NTFS — recupera operações de arquivo recentes', prio: 'med' },
+        { name: 'ShellBags', path: 'HKCU\\SOFTWARE\\Classes\\Local Settings\\Software\\Microsoft\\Windows\\Shell', desc: 'Pastas acessadas pelo Explorer — prova acesso mesmo após deleção da pasta', prio: 'high' },
+        { name: 'LNK Files', path: 'C:\\Users\\<user>\\AppData\\Roaming\\Microsoft\\Windows\\Recent', desc: 'Atalhos de arquivos abertos — preserva path original, timestamps e MAC do arquivo', prio: 'med' },
+        { name: 'JumpLists', path: 'C:\\Users\\<user>\\AppData\\Roaming\\Microsoft\\Windows\\Recent\\AutomaticDestinations', desc: 'Histórico de arquivos abertos por aplicação — inclui arquivos remotos', prio: 'med' },
+      ]
+    },
+    {
+      os: 'win', cat: 'process',
+      title: 'Análise de Processos',
+      tip: 'Malware fileless reside em memória. Sysmon 8 (CreateRemoteThread) e 10 (ProcessAccess) detectam process injection. Sempre valide processos com parent anômalo (ex: Word → PowerShell).',
+      items: [
+        { name: 'Sysmon Event ID 8', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'CreateRemoteThread — process injection clássico (DLL injection, shellcode)', prio: 'high' },
+        { name: 'Sysmon Event ID 10', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'ProcessAccess — acesso a LSASS (credential dumping com Mimikatz)', prio: 'high' },
+        { name: 'Sysmon Event ID 7', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'Image Loaded — DLLs carregadas por processo, detecta DLL hijacking', prio: 'med' },
+        { name: 'Sysmon Event ID 11', path: 'Microsoft-Windows-Sysmon/Operational.evtx', desc: 'File Created — rastreia criação de arquivos por processo', prio: 'med' },
+        { name: 'Event ID 4663', path: 'Security.evtx', desc: 'Acesso a objeto (arquivo/registro) — requer SACL configurado', prio: 'med' },
+      ]
+    },
+
+    // ══════════════════════════════════════════
+    //  LINUX CARDS
+    // ══════════════════════════════════════════
+    {
+      os: 'lin', cat: 'auth',
+      title: 'Autenticação & Logins',
+      tip: 'Se auth.log está vazio ou ausente, pode ser tamper. Correlacione wtmp + auth.log + lastlog para reconstruir sessões SSH completas com duração.',
+      items: [
+        { name: 'auth.log', path: '/var/log/auth.log  (Debian/Ubuntu)', desc: 'Logins SSH, sudo, su, PAM — principal log de autenticação', prio: 'high' },
+        { name: 'secure', path: '/var/log/secure  (RHEL/CentOS)', desc: 'Equivalente ao auth.log em distribuições Red Hat', prio: 'high' },
+        { name: 'wtmp', path: '/var/log/wtmp  → leia com: last', desc: 'Histórico completo de logins, logouts e reboots com timestamps', prio: 'high' },
+        { name: 'btmp', path: '/var/log/btmp  → leia com: lastb', desc: 'Tentativas de login falhas — detecta brute force SSH', prio: 'high' },
+        { name: 'utmp', path: '/var/run/utmp  → leia com: who', desc: 'Usuários atualmente logados — snapshot em tempo real', prio: 'med' },
+        { name: 'lastlog', path: '/var/log/lastlog', desc: 'Último login de cada usuário — identifica contas dormentes ativadas', prio: 'med' },
+      ]
+    },
+    {
+      os: 'lin', cat: 'exec',
+      title: 'Execução de Comandos',
+      tip: 'bash_history pode ser apagado com "history -c" ou HISTSIZE=0. Se vazio — isso É evidência de tampering. Auditd (audit.log) é o Sysmon do Linux; é a fonte mais confiável.',
+      items: [
+        { name: 'bash_history', path: '~/.bash_history', desc: 'Histórico de comandos — verifique HISTTIMEFORMAT para timestamps', prio: 'high' },
+        { name: 'zsh_history / fish_history', path: '~/.zsh_history | ~/.local/share/fish/fish_history', desc: 'Equivalentes para outros shells — timestamps nativos no ZSH', prio: 'high' },
+        { name: 'audit.log (auditd)', path: '/var/log/audit/audit.log', desc: 'Execução de syscalls, acesso a arquivos, comandos — precisa de auditd instalado', prio: 'high' },
+        { name: 'journald', path: 'journalctl -xe  (systemd)', desc: 'Logs centralizados de todos os serviços — inclui execução via systemd', prio: 'med' },
+        { name: 'syslog', path: '/var/log/syslog', desc: 'Log geral do sistema — cronograma de eventos e anomalias', prio: 'med' },
+      ]
+    },
+    {
+      os: 'lin', cat: 'persist',
+      title: 'Persistência',
+      tip: 'authorized_keys é o vetor de persistência #1 em Linux. Sempre verifique também /etc/ld.so.preload (LD_PRELOAD hijacking) e módulos PAM — são backdoors extremamente furtivos.',
+      items: [
+        { name: 'authorized_keys', path: '~/.ssh/authorized_keys | /root/.ssh/authorized_keys', desc: 'Chave SSH do atacante adicionada para acesso persistente sem senha', prio: 'high' },
+        { name: 'Crontab do usuário', path: '/var/spool/cron/crontabs/<user>', desc: 'Tarefas agendadas por usuário — frequente em persistência de malware', prio: 'high' },
+        { name: 'Crontab do sistema', path: '/etc/crontab | /etc/cron.d/ | /etc/cron.daily/', desc: 'Tasks de sistema — requer root para modificar', prio: 'high' },
+        { name: 'Systemd Services', path: '/etc/systemd/system/*.service', desc: 'Serviços criados pelo atacante — verifique units com ExecStart suspeito', prio: 'high' },
+        { name: 'Systemd Timers', path: '/etc/systemd/system/*.timer', desc: 'Equivalente ao cron via systemd — frequentemente ignorado em IR', prio: 'high' },
+        { name: '.bashrc / .bash_profile', path: '~/.bashrc | ~/.bash_profile | /etc/profile', desc: 'Executa no login do usuário — persistência sem serviço', prio: 'med' },
+        { name: 'LD_PRELOAD', path: '/etc/ld.so.preload', desc: 'Carrega biblioteca maliciosa antes de QUALQUER processo — rootkit clássico', prio: 'high' },
+        { name: 'PAM Modules', path: '/etc/pam.d/ | /lib/security/', desc: 'Módulo PAM malicioso captura credenciais em todo login do sistema', prio: 'high' },
+        { name: 'rc.local', path: '/etc/rc.local', desc: 'Script executado no boot — legado mas ainda presente em muitas distros', prio: 'med' },
+      ]
+    },
+    {
+      os: 'lin', cat: 'network',
+      title: 'Rede & Conectividade',
+      tip: '/proc/net/tcp funciona MESMO sem netstat instalado — leia diretamente. Converta endereços hex para decimal. Combine com /proc/<PID>/fd para mapear processo ↔ socket.',
+      items: [
+        { name: '/proc/net/tcp', path: '/proc/net/tcp | /proc/net/tcp6', desc: 'Conexões TCP ativas — funciona sem netstat, endereços em hex little-endian', prio: 'high' },
+        { name: '/etc/hosts', path: '/etc/hosts', desc: 'Resolução DNS local — atacante pode redirecionar domínios legítimos', prio: 'high' },
+        { name: '/etc/resolv.conf', path: '/etc/resolv.conf', desc: 'DNS configurado — mudança indica possível DNS hijacking', prio: 'med' },
+        { name: 'iptables / nftables', path: 'iptables -L -n | /etc/iptables/', desc: 'Regras de firewall — atacante pode ter aberto portas ou redirecionado tráfego', prio: 'med' },
+        { name: 'SSH known_hosts', path: '~/.ssh/known_hosts', desc: 'Hosts acessados via SSH — evidencia movimento lateral de saída', prio: 'med' },
+        { name: 'SSH config', path: '~/.ssh/config', desc: 'Configurações SSH — ProxyJump e aliases revelam infra do atacante', prio: 'med' },
+      ]
+    },
+    {
+      os: 'lin', cat: 'priv',
+      title: 'Usuários & Privilégios',
+      tip: 'Procure usuários com UID=0 (além de root) em /etc/passwd — é persistência de conta root alternativa. Verifique /etc/sudoers.d/ que é frequentemente ignorado.',
+      items: [
+        { name: '/etc/passwd', path: '/etc/passwd', desc: 'Todos os usuários — procure contas novas, UID=0, shell incomum', prio: 'high' },
+        { name: '/etc/shadow', path: '/etc/shadow', desc: 'Hashes de senha — requer root; compara com dicionários para senhas fracas', prio: 'high' },
+        { name: '/etc/group', path: '/etc/group', desc: 'Grupos — verifique usuários adicionados ao grupo sudo/wheel/docker', prio: 'high' },
+        { name: '/etc/sudoers', path: '/etc/sudoers | /etc/sudoers.d/', desc: 'Privilégios sudo — "NOPASSWD: ALL" é backdoor clássico', prio: 'high' },
+        { name: 'SUID Binários', path: 'find / -perm -4000 -type f 2>/dev/null', desc: 'Binários SUID — atacante pode criar binário SUID para escalada de privilégio', prio: 'high' },
+      ]
+    },
+    {
+      os: 'lin', cat: 'process',
+      title: 'Processos & /proc',
+      tip: 'Malware Linux frequentemente deleta o próprio binário após execução. Mas o processo ainda roda! "cp /proc/<PID>/exe /tmp/sample" extrai o binário da memória para análise.',
+      items: [
+        { name: '/proc/<PID>/exe', path: '/proc/<PID>/exe', desc: 'Binário do processo — aparece como "(deleted)" se arquivo foi removido do disco', prio: 'high' },
+        { name: '/proc/<PID>/cmdline', path: '/proc/<PID>/cmdline', desc: 'Linha de comando completa incluindo argumentos — separado por null bytes', prio: 'high' },
+        { name: '/proc/<PID>/maps', path: '/proc/<PID>/maps', desc: 'Regiões de memória mapeadas — detecta shellcode e injeção em memória', prio: 'high' },
+        { name: '/proc/<PID>/fd', path: '/proc/<PID>/fd', desc: 'File descriptors abertos — sockets, pipes e arquivos em uso pelo processo', prio: 'med' },
+        { name: '/proc/<PID>/environ', path: '/proc/<PID>/environ', desc: 'Variáveis de ambiente do processo — pode conter credenciais ou paths suspeitos', prio: 'med' },
+        { name: '/dev/shm', path: '/dev/shm/', desc: 'Memória compartilhada — malware usa para residir sem tocar disco', prio: 'high' },
+      ]
+    },
+    {
+      os: 'lin', cat: 'logs',
+      title: 'Logs do Sistema',
+      tip: 'Verifique kern.log para carregamento de módulos suspeitos (rootkits LKM). Compare "lsmod" com /proc/modules diretamente — rootkit pode esconder a si mesmo em lsmod mas esquecer /proc/modules.',
+      items: [
+        { name: 'syslog', path: '/var/log/syslog', desc: 'Log geral — eventos do sistema, daemons, cron executions', prio: 'med' },
+        { name: 'kern.log', path: '/var/log/kern.log', desc: 'Kernel — carregamento de módulos suspeitos, rootkits LKM', prio: 'high' },
+        { name: 'dpkg.log / yum.log', path: '/var/log/dpkg.log | /var/log/yum.log', desc: 'Pacotes instalados/removidos — atacante pode ter instalado ferramentas', prio: 'med' },
+        { name: 'audit.log', path: '/var/log/audit/audit.log', desc: 'Auditd — execução de processos, acesso a arquivos, mudanças de conta', prio: 'high' },
+        { name: '/tmp & /var/tmp', path: '/tmp/ | /var/tmp/', desc: 'World-writable — local preferido para dropar binários maliciosos', prio: 'high' },
+      ]
+    },
+
+  ];
+
+  let activeOs = 'both';
+  let activeCat = 'all';
+  let searchQ = '';
+
+  function highlight(text, q) {
+    if (!q) return text;
+    const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+    return text.replace(re, '<mark>$1</mark>');
+  }
+
+  function render() {
+    const grid = document.getElementById('irGrid');
+    let cards = data.filter(c => {
+      const osMatch = activeOs === 'both' || c.os === activeOs;
+      const catMatch = activeCat === 'all' || c.cat === activeCat;
+      return osMatch && catMatch;
+    });
+
+    if (searchQ) {
+      cards = cards.map(card => {
+        const items = card.items.filter(item =>
+          item.name.toLowerCase().includes(searchQ) ||
+          item.path.toLowerCase().includes(searchQ) ||
+          item.desc.toLowerCase().includes(searchQ) ||
+          card.title.toLowerCase().includes(searchQ)
+        );
+        return items.length ? { ...card, items } : null;
+      }).filter(Boolean);
+    }
+
+    if (!cards.length) {
+      grid.innerHTML = '<div class="ir-empty">// Nenhum artefato encontrado para esse filtro.</div>';
+      return;
+    }
+
+    grid.innerHTML = cards.map(card => {
+      const cls = card.os === 'win' ? 'ir-win-card' : 'ir-lin-card';
+      const badge = card.os === 'win'
+        ? '<span class="ir-os-badge win">WINDOWS</span>'
+        : '<span class="ir-os-badge lin">LINUX</span>';
+
+      const items = card.items.map(item => `
+        <div class="ir-artifact-item">
+          <div>
+            <div class="ir-artifact-name">${highlight(item.name, searchQ)}</div>
+            <div class="ir-artifact-path">${highlight(item.path, searchQ)}</div>
+            <div class="ir-artifact-desc">${highlight(item.desc, searchQ)}</div>
+          </div>
+          <span class="ir-prio ${item.prio}">${item.prio === 'high' ? 'ALTA' : item.prio === 'med' ? 'MED' : 'BAIXA'}</span>
+        </div>
+      `).join('');
+
+      return `
+        <div class="ir-card ${cls}">
+          <div class="ir-card-header">
+            <div class="ir-card-title">
+              <div class="ir-dot"></div>
+              ${highlight(card.title, searchQ)}
+            </div>
+            ${badge}
+          </div>
+          <div class="ir-artifact-list">${items}</div>
+          <div class="ir-tip"><span class="ir-tip-icon">💡</span>${card.tip}</div>
+        </div>
+      `;
+    }).join('');
+  }
+
+  document.querySelectorAll('.ir-tab').forEach(t => {
+    t.addEventListener('click', () => {
+      document.querySelectorAll('.ir-tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      activeOs = t.dataset.os;
+      render();
+    });
+  });
+
+  document.querySelectorAll('.ir-cat-btn').forEach(b => {
+    b.addEventListener('click', () => {
+      document.querySelectorAll('.ir-cat-btn').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+      activeCat = b.dataset.cat;
+      render();
+    });
+  });
+
+  document.getElementById('irSearch').addEventListener('input', e => {
+    searchQ = e.target.value.toLowerCase().trim();
+    render();
+  });
+
+  render();
+})();
+</script>
+</body>
+</html>

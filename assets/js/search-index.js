@@ -4,14 +4,14 @@ window.MEDUSA_SEARCH_INDEX = [
     url: "/blue-team/detections/",
     category: "Blue Team",
     excerpt: "Signature-based, behavior-based, anomaly-based, heuristic-based e trend-based detection explicados.",
-    tags: ["deteccao", "blue team", "soc", "yara", "siem"]
+    tags: ["deteccao", "blue team", "soc", "yara", "siem", "antivirus", "ids", "ips"]
   },
   {
-    title: "Detecções e suas diferenças",
-    url: "/blue-team/ftk/",
+    title: "IR Forensics — Artefatos Windows & Linux",
+    url: "/blue-team/ir-forensics/",
     category: "Blue Team",
-    excerpt: "Entenda as diferenças entre detecção por assinatura e por comportamento.",
-    tags: ["deteccao", "blue team", "antivirus", "ids", "ips"]
+    excerpt: "Matriz de referência para Incident Response: artefatos forenses do Windows e Linux por categoria e prioridade.",
+    tags: ["ir", "forensics", "forense", "windows", "linux", "sysmon", "evtx", "mitre attack", "blue team"]
   },
   {
     title: "Red Team",
