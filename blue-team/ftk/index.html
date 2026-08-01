@@ -3,115 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta http-equiv="refresh" content="0; url=/blue-team/detections/">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>Detecções e suas diferenças | MedusaSec</title>
-<meta name="description" content="No mundo da segurança da informação, é necessário entender como funciona as detecções e quais as diferenças entre elas, dessa forma, o time de red team consegue entender o que bypassar e o blue team o que pode melhorar para identificar possíveis intrusões.">
-<link rel="canonical" href="https://medusasec.com.br/blue-team/ftk/">
+<meta name="robots" content="noindex">
+<title>Redirecionando... | MedusaSec</title>
+<link rel="canonical" href="https://medusasec.com.br/blue-team/detections/">
 <link rel="stylesheet" href="/assets/css/style.css">
 <link rel="icon" href="/favicon.ico">
 <meta name="theme-color" content="#1d1e20">
-<meta property="og:url" content="https://medusasec.com.br/blue-team/ftk/">
-<meta property="og:site_name" content="MedusaSec">
-<meta property="og:title" content="Detecções e suas diferenças">
-<meta property="og:type" content="article">
 </head>
 <body id="top">
-
-<header class="site-header">
-  <nav class="nav">
-    <a href="/" class="logo"><img src="/images/logo.png" alt="MedusaSec logo">MedusaSec</a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="/red-team/" data-section="red-team">Red Team</a></li>
-      <li><a href="/blue-team/" data-section="blue-team">Blue Team</a></li>
-      <li><a href="/coding/" data-section="coding">Coding</a></li>
-      <li><a href="/about-us/">About Us</a></li>
-      <li>
-        <div class="search-box mobile">
-          <input type="text" placeholder="Buscar posts...">
-          <div class="search-results"></div>
-        </div>
-      </li>
-    </ul>
-    <div class="nav-actions">
-      <div class="search-box">
-        <input type="text" placeholder="Buscar...">
-        <div class="search-results"></div>
-      </div>
-      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+  <main>
+    <div class="not-found">
+      <p>Este post foi unificado com <a href="/blue-team/detections/">Da assinatura ao comportamento: Uma análise dos tipos de detecção</a>. Redirecionando...</p>
     </div>
-  </nav>
-</header>
-
-<main>
-  <div class="post-header">
-    <div class="container">
-      <div class="badges">
-        <span class="badge blue">Blue Team</span>
-        <span class="badge level">Iniciante</span>
-      </div>
-      <h1>Detecções e suas diferenças</h1>
-      <div class="post-meta">7 de maio de 2025 · 2 min de leitura</div>
-    </div>
-  </div>
-
-  <article class="post-content">
-    <p>No mundo da segurança da informação, é necessário entender como funciona as detecções e quais as diferenças entre elas, dessa forma, o time de red team consegue entender o que bypassar e o blue team o que pode melhorar para identificar possíveis intrusões.</p>
-
-    <h2 id="signature-based-detection">Signature-Based Detection</h2>
-    <p>Essa detecção tem como intuito identificar processos maliciosos com base em assinaturas já conhecidas de malwares ou pacotes, ou seja, o antivirus ou ferramenta de análise de pacotes identifica um hash, string ou um tráfego já constatado em um banco de dados, no qual é atualizado com base em novos samples e padrões. Esse tipo de detecção é utilizado pelas seguintes ferramentas:</p>
-    <ul>
-      <li>IDSs</li>
-      <li>IPs</li>
-      <li>AntiVirus</li>
-    </ul>
-    <pre><code>Se:
-- O hash SHA256 de um arquivo for igual a
-“d2d2d2aa11b22c333dd444ee5556ff778899aabbccddeeff0011223344556677”,
-
-Então:
-- Marque como malware “Trojan.XYZ”.</code></pre>
-
-    <h2 id="behavior-based-detection">Behavior-Based Detection</h2>
-    <p>Essa detecção busca padrões de atividades maliciosas no sistema, como por exemplo, um arquivo que realiza a alteração do registro startup para criar persistência ou quando um binário acessa diversos outros arquivos e muda a extensão de todos, sendo um behavior de ransomware.</p>
-    <pre><code>Se um processo:
-- abrir mais de 100 arquivos em menos de 1 minuto,
-- modificar ou renomear extensões de arquivos para ".encrypted",
-- e tentar apagar shadow copies do sistema (ex: usando vssadmin)
-
-Então:
-- Gerar alerta de possível ransomware ativo.
-
-||
-
-Se um binário:
-  - usar API como URLDownloadToFileA, WinHttpSendRequest ou InternetOpenUrl
-  - gravar um arquivo executável no disco (CreateFile + WriteFile)
-  - e executar esse arquivo (CreateProcess)
-
-Então:
-  - Gerar alerta: "Possível downloader ou dropper detectado"</code></pre>
-
-    <footer class="post-footer">
-      <a class="back-link" href="/blue-team/">← Voltar para Blue Team</a>
-    </footer>
-  </article>
-</main>
-
-<footer class="site-footer">
-  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; width:100%;">
-    <span>&copy; 2026 <a href="/">MedusaSec</a></span>
-    <span>Segurança e Desenvolvimento, sem enrolação.</span>
-  </div>
-</footer>
-<a href="#top" aria-label="Voltar ao topo" class="top-link" id="top-link">↑</a>
-
-<script src="/assets/js/search-index.js"></script>
-<script src="/assets/js/main.js"></script>
-<script>
-  document.querySelectorAll('.nav-links a[data-section]').forEach(a => {
-    if (location.pathname.startsWith('/' + a.dataset.section)) a.classList.add('active');
-  });
-</script>
+  </main>
 </body>
 </html>
