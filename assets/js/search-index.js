@@ -7,6 +7,13 @@ window.MEDUSA_SEARCH_INDEX = [
     tags: ["deteccao", "blue team", "soc", "yara", "siem", "antivirus", "ids", "ips"]
   },
   {
+    title: "IR Forensics — Artefatos Windows & Linux",
+    url: "/blue-team/ir-forensics/",
+    category: "Blue Team",
+    excerpt: "Matriz de referência para Incident Response: artefatos forenses do Windows e Linux por categoria e prioridade.",
+    tags: ["ir", "forensics", "forense", "windows", "linux", "sysmon", "evtx", "mitre attack", "blue team"]
+  },
+  {
     title: "Red Team",
     url: "/red-team/",
     category: "Categoria",
