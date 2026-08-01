@@ -1,139 +1,48 @@
 <!DOCTYPE html>
-<html lang="en" dir="auto">
-
-<head><meta charset="utf-8">
+<html lang="pt-br" dir="auto">
+<head>
+<meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="index, follow">
-<title>404 Page not found | MedusaSec</title>
-<meta name="keywords" content="">
-<meta name="description" content="">
-<meta name="author" content="">
+<meta name="robots" content="noindex">
+<title>404 Página não encontrada | MedusaSec</title>
 <link rel="canonical" href="https://medusasec.com.br/404.html">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.93f625d739f1d6a5c6f20c146bc6a8d26b233492b34b2220c54b12fd46a04ded.css" integrity="sha256-k/Yl1znx1qXG8gwUa8ao0msjNJKzSyIgxUsS/UagTe0=" rel="preload stylesheet" as="style">
-<link rel="icon" href="https://medusasec.com.br/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="https://medusasec.com.br/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="https://medusasec.com.br/favicon-32x32.png">
-<link rel="apple-touch-icon" href="https://medusasec.com.br/apple-touch-icon.png">
-<link rel="mask-icon" href="https://medusasec.com.br/safari-pinned-tab.svg">
-<meta name="theme-color" content="#2e2e33">
-<meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="https://medusasec.com.br/404.html">
-<noscript>
-    <style>
-        #theme-toggle,
-        .top-link {
-            display: none;
-        }
-
-    </style>
-</noscript><meta property="og:url" content="https://medusasec.com.br/404.html">
-  <meta property="og:site_name" content="MedusaSec">
-  <meta property="og:title" content="404 Page not found">
-  <meta property="og:locale" content="pt-br">
-  <meta property="og:type" content="website">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="404 Page not found">
-<meta name="twitter:description" content="">
-
+<link rel="stylesheet" href="/assets/css/style.css">
+<link rel="icon" href="/favicon.ico">
+<meta name="theme-color" content="#1d1e20">
 </head>
+<body id="top">
 
-<body class="list dark" id="top">
-
-<header class="header">
-    <nav class="nav">
-        <div class="logo">
-            <a href="https://medusasec.com.br/" accesskey="h" title="MedusaSec (Alt + H)">
-                <img src="https://medusasec.com.br/images/logo.png" alt="" aria-label="logo"
-                    height="30">MedusaSec</a>
-            <div class="logo-switches">
-            </div>
-        </div>
-        <ul id="menu">
-            <li>
-                <a href="https://medusasec.com.br/red-team/" title="Red Team">
-                    <span>Red Team</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://medusasec.com.br/blue-team/" title="Blue Team">
-                    <span>Blue Team</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://medusasec.com.br/coding/" title="Coding">
-                    <span>Coding</span>
-                </a>
-            </li>
-            <li>
-                <a href="https://medusasec.com.br/about-us/" title="About Us">
-                    <span>About Us</span>
-                </a>
-            </li>
-        </ul>
-    </nav>
+<header class="site-header">
+  <nav class="nav">
+    <a href="/" class="logo"><img src="/images/logo.png" alt="MedusaSec logo">MedusaSec</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="/red-team/" data-section="red-team">Red Team</a></li>
+      <li><a href="/blue-team/" data-section="blue-team">Blue Team</a></li>
+      <li><a href="/coding/" data-section="coding">Coding</a></li>
+      <li><a href="/about-us/">About Us</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">☰</button>
+    </div>
+  </nav>
 </header>
-<main class="main">
-<div class="not-found">404</div>
-    </main>
-    
-<footer class="footer">
-        <span>&copy; 2025 <a href="https://medusasec.com.br/">MedusaSec</a></span> · 
 
-    <span>
-        Powered by
-        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
-        <a href="https://github.com/adityatelange/hugo-PaperMod/" rel="noopener" target="_blank">PaperMod</a>
-    </span>
+<main>
+  <div class="not-found">
+    <h1>404</h1>
+    <p>Essa página não existe — ou foi movida, ou você errou o caminho.</p>
+    <a href="/">Voltar para a home</a>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; width:100%;">
+    <span>&copy; 2026 <a href="/">MedusaSec</a></span>
+    <span>Segurança e Desenvolvimento, sem enrolação.</span>
+  </div>
 </footer>
-<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
-        <path d="M12 6H0l6-6z" />
-    </svg>
-</a>
 
-<script>
-    let menu = document.getElementById('menu')
-    if (menu) {
-        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
-        menu.onscroll = function () {
-            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
-        }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener("click", function (e) {
-            e.preventDefault();
-            var id = this.getAttribute("href").substr(1);
-            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
-                    behavior: "smooth"
-                });
-            } else {
-                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
-            }
-            if (id === "top") {
-                history.replaceState(null, null, " ");
-            } else {
-                history.pushState(null, null, `#${id}`);
-            }
-        });
-    });
-
-</script>
-<script>
-    var mybutton = document.getElementById("top-link");
-    window.onscroll = function () {
-        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
-            mybutton.style.visibility = "visible";
-            mybutton.style.opacity = "1";
-        } else {
-            mybutton.style.visibility = "hidden";
-            mybutton.style.opacity = "0";
-        }
-    };
-
-</script>
+<script src="/assets/js/main.js"></script>
 </body>
-
 </html>
